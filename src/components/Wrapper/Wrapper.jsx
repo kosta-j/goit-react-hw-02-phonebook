@@ -1,39 +1,43 @@
-import { Component } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { Component } from 'react';
+import Section from '../Section/Section';
 
 class Wrapper extends Component {
   state = {
     contacts: [],
-    name: "",
+    name: '',
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
-    console.log(uuidv4());
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+      <div className="wrapper">
+        <Section title="Phonebook">
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              <input
+                type="text"
+                name="name"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                required
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+            </label>
+            <button type="submit">Add contact</button>
+          </form>
+        </Section>
+        <Section title="Contacts"></Section>
+      </div>
     );
   }
 }
