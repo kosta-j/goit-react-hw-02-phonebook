@@ -24,9 +24,11 @@ class Wrapper extends Component {
       number: data.number,
     };
 
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, contact],
-    }));
+    this.state.contacts.filter(item => item.name === contact.name)
+      ? alert(`${contact.name} is already in contacts`)
+      : this.setState(prevState => ({
+          contacts: [...prevState.contacts, contact],
+        }));
   };
 
   changeFilter = e => {
