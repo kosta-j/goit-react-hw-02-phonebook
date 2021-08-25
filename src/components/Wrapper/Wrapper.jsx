@@ -24,7 +24,9 @@ class Wrapper extends Component {
       number: data.number,
     };
 
-    this.state.contacts.filter(item => item.name === contact.name)
+    // console.log(this.state.contacts.filter(item => item.name === data.name));
+
+    this.state.contacts.filter(item => item.name === data.name).length > 0
       ? alert(`${contact.name} is already in contacts`)
       : this.setState(prevState => ({
           contacts: [...prevState.contacts, contact],
@@ -33,6 +35,12 @@ class Wrapper extends Component {
 
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
+  };
+
+  deleteContactHandler = contactID => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => item.id !== contactID),
+    }));
   };
 
   render() {
@@ -49,7 +57,10 @@ class Wrapper extends Component {
         </Section>
         <Section title="Contacts">
           <Filter value={filter} onChange={this.changeFilter} />
-          <ContactList contacts={filteredContacts} />
+          <ContactList
+            contacts={filteredContacts}
+            onDeleteBtnClick={this.deleteContactHandler}
+          />
         </Section>
       </div>
     );
