@@ -1,12 +1,10 @@
 import s from './ContactList.module.css';
 
-function ContactItem({ id, name, number, onClick }) {
+function ContactItem({ name, number, children }) {
   return (
     <li className={s.item}>
       {name}: {number}
-      <button type="button" onClick={() => onClick(id)}>
-        Delete
-      </button>
+      {children}
     </li>
   );
 }

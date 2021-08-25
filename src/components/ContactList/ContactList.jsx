@@ -10,8 +10,12 @@ function ContactList({ contacts, onDeleteBtnClick }) {
           key={contact.id}
           name={contact.name}
           number={contact.number}
-          onClick={onDeleteBtnClick}
-        />
+          onDeleteBtnClick={onDeleteBtnClick}
+        >
+          <button type="button" onClick={() => onDeleteBtnClick(contact.id)}>
+            Delete
+          </button>
+        </ContactItem>
       ))}
     </ul>
   );

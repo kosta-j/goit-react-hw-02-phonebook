@@ -8,12 +8,7 @@ import s from './Wrapper.module.css';
 
 class Wrapper extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -23,8 +18,6 @@ class Wrapper extends Component {
       name: data.name,
       number: data.number,
     };
-
-    // console.log(this.state.contacts.filter(item => item.name === data.name));
 
     this.state.contacts.filter(item => item.name === data.name).length > 0
       ? alert(`${contact.name} is already in contacts`)
@@ -38,6 +31,7 @@ class Wrapper extends Component {
   };
 
   deleteContactHandler = contactID => {
+    console.log(contactID);
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(item => item.id !== contactID),
     }));
@@ -56,11 +50,17 @@ class Wrapper extends Component {
           <ContactForm onSubmit={this.formSubmitHanler} />
         </Section>
         <Section title="Contacts">
-          <Filter value={filter} onChange={this.changeFilter} />
-          <ContactList
-            contacts={filteredContacts}
-            onDeleteBtnClick={this.deleteContactHandler}
-          />
+          {contacts.length < 1 ? (
+            <p>Contact list is empty</p>
+          ) : (
+            <>
+              <Filter value={filter} onChange={this.changeFilter} />
+              <ContactList
+                contacts={filteredContacts}
+                onDeleteBtnClick={this.deleteContactHandler}
+              />
+            </>
+          )}
         </Section>
       </div>
     );
