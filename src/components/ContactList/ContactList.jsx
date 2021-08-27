@@ -23,6 +23,7 @@ function ContactList({ contacts, onDeleteBtnClick }) {
 
 ContactList.propTypes = {
   contacts: PropTypes.array,
+  onDeleteBtnClick: PropTypes.func,
 };
 
 export default ContactList;

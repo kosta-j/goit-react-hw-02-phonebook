@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
+import Notification from '../Notification/Notification';
 import Section from '../Section/Section';
 import s from './Wrapper.module.css';
 
@@ -51,7 +52,7 @@ class Wrapper extends Component {
         </Section>
         <Section title="Contacts">
           {contacts.length < 1 ? (
-            <p>Contact list is empty</p>
+            <Notification text="Contact list is empty" />
           ) : (
             <>
               <Filter value={filter} onChange={this.changeFilter} />
